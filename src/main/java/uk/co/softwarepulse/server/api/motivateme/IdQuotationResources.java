@@ -9,6 +9,6 @@ public class IdQuotationResources {
 
     @GET
     public String showQuoteBasedOnID(@QueryParam("id") int id) {
-        return "A quote is only as good at quote " + id + ".";
+        return "A quote is only as good as quote " + id + ".";
     }
 }
