@@ -3,7 +3,7 @@ package uk.co.softwarepulse.server.api.motivateme;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 
-@Path("/quote/id")
+@Path("/quote")
 public class RandomQuotationResources
 {
     @GET
