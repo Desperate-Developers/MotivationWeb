@@ -1,13 +1,22 @@
 package uk.co.softwarepulse.server.api.motivateme.data;
 
 public class Quote {
+    private String author;
+    private String category;
+    private String quotation;
 
-    private String author ;
-    private String category ;
-    private String quotation ;
+    public Quote() {
+        this("", "", "");
+    }
+    
+    public Quote(String author, String category, String quotation) {
+        this.author = author;
+        this.category = category;
+        this.quotation = quotation;
+    }
 
     public String getAuthor() {
-        return author;
+        return this.author;
     }
 
     public void setAuthor(String author) {
@@ -15,7 +24,7 @@ public class Quote {
     }
 
     public String getCategory() {
-        return category;
+        return this.category;
     }
 
     public void setCategory(String category) {
@@ -23,7 +32,7 @@ public class Quote {
     }
 
     public String getQuotation() {
-        return quotation;
+        return this.quotation;
     }
 
     public void setQuotation(String quotation) {
@@ -32,6 +41,6 @@ public class Quote {
 
     @Override
     public String toString() {
-        return "Author: " + this.author + ", Category: " + this.category + ", Quote: " + this.quotation ;
+        return "Author: " + author + ", Category: " + category + ", Quote: " + quotation;
     }
 }
