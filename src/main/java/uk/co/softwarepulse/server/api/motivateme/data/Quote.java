@@ -1,18 +1,28 @@
 package uk.co.softwarepulse.server.api.motivateme.data;
 
 public class Quote {
+    private String id;
     private String author;
     private String category;
     private String quotation;
 
     public Quote() {
-        this("", "", "");
+        this("", "", "", "");
     }
-    
-    public Quote(String author, String category, String quotation) {
+
+    public Quote(String id, String author, String category, String quotation) {
+        this.id = id ;
         this.author = author;
         this.category = category;
         this.quotation = quotation;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAuthor() {
