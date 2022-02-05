@@ -51,6 +51,6 @@ public class Quote {
 
     @Override
     public String toString() {
-        return "Author: " + author + ", Category: " + category + ", Quote: " + quotation;
+        return "Id: " + id + ", Author: " + author + ", Category: " + category + ", Quote: " + quotation;
     }
 }
