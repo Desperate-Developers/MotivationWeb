@@ -14,7 +14,7 @@ public class RandomQuoteDAO {
     {
         List<Quote> listOfQuotes = new ArrayList<>() ;
         String query = "SELECT * FROM motivate.quotations;" ;
-        String category, quotation, author ;
+        String id, category, quotation, author ;
 
         Connection connection ;
         Statement statement ;
@@ -29,11 +29,12 @@ public class RandomQuoteDAO {
             resultSet = statement.executeQuery(query) ;
 
             while(resultSet.next()) {
+                id = resultSet.getString("id") ;
                 author = resultSet.getString("author") ;
                 category = resultSet.getString("category") ;
                 quotation = resultSet.getString("quote") ;
 
-                quote = new Quote(author, category, quotation) ;
+                quote = new Quote(id, author, category, quotation) ;
 
                 listOfQuotes.add(quote) ;
             }
