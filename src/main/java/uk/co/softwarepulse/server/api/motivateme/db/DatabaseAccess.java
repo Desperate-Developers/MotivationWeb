@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class DatabaseAccess {
 
-    public static Connection createConnection() throws NamingException, SQLException {
+    public Connection createConnection() throws NamingException, SQLException {
 
         InitialContext initialContext = new InitialContext() ;
 
