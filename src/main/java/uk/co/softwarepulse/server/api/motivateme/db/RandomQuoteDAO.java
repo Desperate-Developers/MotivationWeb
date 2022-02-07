@@ -20,7 +20,7 @@ public class RandomQuoteDAO {
         Statement statement ;
         ResultSet resultSet ;
         Quote quote ;
-
+        //DatabaseAccess da = new DatabaseAccess();
         try {
             connection = DatabaseAccess.createConnection();
 

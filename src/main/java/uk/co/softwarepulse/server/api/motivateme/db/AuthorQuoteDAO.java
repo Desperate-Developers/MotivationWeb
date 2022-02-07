@@ -20,9 +20,9 @@ public class AuthorQuoteDAO {
         Statement statement ;
         ResultSet resultSet ;
         Quote quote ;
-
+        DatabaseAccess da = new DatabaseAccess();
         try {
-            connection = DatabaseAccess.createConnection();
+            connection = da.createConnection();
 
             statement = connection.createStatement() ;
 
