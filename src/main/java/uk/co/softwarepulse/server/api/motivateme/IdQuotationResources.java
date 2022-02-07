@@ -4,11 +4,11 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.QueryParam;
 
-@Path("/quote")
+@Path("/quote/id")
 public class IdQuotationResources {
 
     @GET
     public String showQuoteBasedOnID(@QueryParam("id") int id) {
-        return "A quote is only as good as quote " + id + "." ;
+        return "A quote is only as good as quote " + id + ".";
     }
 }

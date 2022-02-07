@@ -24,7 +24,7 @@ public class Quote {
     public void setId(String id) {
         this.id = id;
     }
-
+  
     public String getAuthor() {
         return this.author;
     }
