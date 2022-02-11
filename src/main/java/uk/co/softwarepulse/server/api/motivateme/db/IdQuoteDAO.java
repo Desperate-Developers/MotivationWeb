@@ -4,12 +4,14 @@ import uk.co.softwarepulse.server.api.motivateme.data.Quote;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
 public class IdQuoteDAO {
     
-    public List<Quote> getId(String id) {
+    public List<Quote> getId(String id) throws SQLException {
         List<Quote> listOfQuotes = new ArrayList<>();
         String query = "SELECT * FROM motivate.quotations WHERE id=" + id;
         String category;
@@ -34,7 +36,7 @@ public class IdQuoteDAO {
                 listOfQuotes.add(quote);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new SQLException();
         }
 
         return listOfQuotes;
