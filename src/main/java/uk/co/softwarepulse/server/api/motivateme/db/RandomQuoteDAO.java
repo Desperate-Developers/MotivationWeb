@@ -40,10 +40,14 @@ public class RandomQuoteDAO {
             }
         }
         catch (Exception e) {
-            e.printStackTrace() ;
+
+            quote = new Quote() ;
+            quote.setCategory(e.toString());
+            quote.setQuotation(e.getMessage());
+
+            listOfQuotes.add(quote) ;
         }
 
         return listOfQuotes ;
     }
-
 }
