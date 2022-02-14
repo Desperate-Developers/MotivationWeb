@@ -16,13 +16,16 @@ public class RandomQuoteDAO {
         String query = "SELECT * FROM motivate.quotations;" ;
         String id, category, quotation, author ;
 
+        DatabaseAccess dbAccess;
         Connection connection ;
         Statement statement ;
         ResultSet resultSet ;
         Quote quote ;
         //DatabaseAccess da = new DatabaseAccess();
         try {
-            connection = DatabaseAccess.createConnection();
+            
+            dbAccess = new DatabaseAccess();
+            connection = dbAccess.createConnection();
 
             statement = connection.createStatement() ;
 
@@ -40,10 +43,14 @@ public class RandomQuoteDAO {
             }
         }
         catch (Exception e) {
-            e.printStackTrace() ;
+
+            quote = new Quote() ;
+            quote.setCategory(e.toString());
+            quote.setQuotation(e.getMessage());
+
+            listOfQuotes.add(quote) ;
         }
 
         return listOfQuotes ;
     }
-
 }
