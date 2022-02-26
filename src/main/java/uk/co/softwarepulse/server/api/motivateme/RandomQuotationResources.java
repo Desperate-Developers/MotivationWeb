@@ -8,11 +8,12 @@ import uk.co.softwarepulse.server.api.motivateme.db.RandomQuoteDAO;
 import java.util.List;
 import java.util.Random;
 
+
 @Path("/quote")
 public class RandomQuotationResources
 {
     @GET
-    public String showRandomQuote()
+    public Quote showRandomQuote()
     {
         Random random = new Random() ;
         RandomQuoteDAO randomQuoteDAO = new RandomQuoteDAO() ;
@@ -20,6 +21,6 @@ public class RandomQuotationResources
 
         int randomNum = random.nextInt(quoteList.size()) ;
 
-        return quoteList.get(randomNum).toString() ;
+        return quoteList.get(randomNum) ;
     }
 }
