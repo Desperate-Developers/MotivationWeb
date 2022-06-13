@@ -2,55 +2,28 @@ package uk.co.softwarepulse.server.api.motivateme.db;
 
 import uk.co.softwarepulse.server.api.motivateme.data.Quote;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 
 public class RandomQuoteDAO {
 
-    public List<Quote> showRandomQuote()
+    public Quote showRandomQuote() throws Exception
     {
+        AllQuotesDAO dao = new AllQuotesDAO() ;
         List<Quote> listOfQuotes = new ArrayList<>() ;
-        String query = "SELECT * FROM motivate.quotations;" ;
-        String id, category, quotation, author ;
-
-        DatabaseAccess dbAccess;
-        Connection connection ;
-        Statement statement ;
-        ResultSet resultSet ;
         Quote quote ;
+        Random random ;
+        int randomNum ;
 
-        try {
-            
-            dbAccess = new DatabaseAccess();
-            connection = dbAccess.createConnection();
+        listOfQuotes = dao.getAllQuotes() ;
 
-            statement = connection.createStatement() ;
+        // pick a random quote from the list of quotes obtained
+        random = new Random() ;
+        randomNum = random.nextInt(listOfQuotes.size()) ;
+        quote = listOfQuotes.get(randomNum) ;
 
-            resultSet = statement.executeQuery(query) ;
-
-            while(resultSet.next()) {
-                id = resultSet.getString("id") ;
-                author = resultSet.getString("author") ;
-                category = resultSet.getString("category") ;
-                quotation = resultSet.getString("quote") ;
-
-                quote = new Quote(id, author, category, quotation) ;
-
-                listOfQuotes.add(quote) ;
-            }
-        }
-        catch (Exception e) {
-
-            quote = new Quote() ;
-            quote.setCategory(e.toString());
-            quote.setQuotation(e.getMessage());
-
-            listOfQuotes.add(quote) ;
-        }
-
-        return listOfQuotes ;
+        return quote ;
     }
 }
