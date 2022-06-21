@@ -21,7 +21,7 @@ public class AuthorQuoteDAO {
         ResultSet resultSet ;
 
         DatabaseAccess da = new DatabaseAccess();
-        Quote quote = new Quote() ;
+        Quote quote ;
 
         query = "SELECT * FROM motivate.quotations WHERE author LIKE '" + author + "%';" ;
 
@@ -46,6 +46,33 @@ public class AuthorQuoteDAO {
 
                 listOfQuotes.add(quote);
             }
+        }
+
+        return listOfQuotes ;
+    }
+
+
+    public List<String> getAuthors() throws Exception {
+        List<String> listOfQuotes = new ArrayList<>() ;
+        String author, query ;
+
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
+
+        DatabaseAccess da = new DatabaseAccess();
+
+        query = "SELECT DISTINCT author FROM motivate.quotations ;" ;
+
+        connection = da.createConnection() ;
+
+        statement = connection.createStatement() ;
+
+        resultSet = statement.executeQuery(query) ;
+
+        while (resultSet.next()) {
+            author = resultSet.getString("author");
+            listOfQuotes.add(author);
         }
 
         return listOfQuotes ;
