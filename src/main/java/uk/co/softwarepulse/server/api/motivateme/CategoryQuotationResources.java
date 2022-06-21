@@ -58,4 +58,25 @@ public class CategoryQuotationResources {
 
         return quotes ;
     }
+
+
+    /**
+     * Used to obtain a list of all the categories of the quotes
+     * @return List of Quote objects
+     */
+    @GET
+    @Path("/list")
+    public List<String> getAllCategories() {
+        CategoryQuoteDAO quoteDAO = new CategoryQuoteDAO() ;
+        List<String> categories = new ArrayList<>() ;
+
+        try {
+            categories = quoteDAO.getAllCategories() ;
+        }
+        catch (Exception e) {
+            categories.add("ERROR: " + e.getCause().toString()) ;
+        }
+
+        return categories ;
+    }
 }
