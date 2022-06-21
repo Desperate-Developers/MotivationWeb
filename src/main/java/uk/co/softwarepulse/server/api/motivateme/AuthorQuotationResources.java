@@ -58,4 +58,25 @@ public class AuthorQuotationResources {
 
         return quotes ;
     }
+
+
+    /**
+     * Used to obtain the names of all the authors of stored quotes
+     * @return List of Quote objects
+     */
+    @GET
+    @Path("/list")
+    public List<String> getAllAuthors() {
+        AuthorQuoteDAO dao = new AuthorQuoteDAO() ;
+        List<String> authors = new ArrayList<>() ;
+
+        try {
+            authors = dao.getAuthors() ;
+        }
+        catch (Exception e) {
+            authors.add("ERROR: " + e.getCause().toString()) ;
+        }
+
+        return authors ;
+    }
 }
