@@ -21,7 +21,7 @@ public class CategoryQuoteDAO {
         ResultSet resultSet ;
 
         DatabaseAccess da = new DatabaseAccess();
-        Quote quote = new Quote() ;
+        Quote quote;
 
         query = "SELECT * FROM motivate.quotations WHERE category LIKE '" + category + "%' ;";
 
@@ -46,5 +46,30 @@ public class CategoryQuoteDAO {
         }
 
         return listOfQuotes ;
+    }
+
+
+    public List<String> getAllCategories() throws Exception {
+        List<String> categories = new ArrayList<>() ;
+        String category, query ;
+
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
+
+        DatabaseAccess da = new DatabaseAccess() ;
+
+        query = "SELECT DISTINCT category FROM motivate.quotations ;" ;
+
+        connection = da.createConnection();
+        statement = connection.createStatement() ;
+        resultSet = statement.executeQuery(query) ;
+
+        while(resultSet.next()) {
+            category = resultSet.getString("category");
+            categories.add(category) ;
+        }
+
+        return categories ;
     }
 }
