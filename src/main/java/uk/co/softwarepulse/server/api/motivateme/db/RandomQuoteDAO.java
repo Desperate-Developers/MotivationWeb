@@ -19,34 +19,6 @@ public class RandomQuoteDAO {
 
         listOfQuotes = dao.getAllQuotes() ;
 
-        //DatabaseAccess da = new DatabaseAccess();
-        try {
-            
-            dbAccess = new DatabaseAccess();
-            connection = dbAccess.createConnection();
-
-            statement = connection.createStatement() ;
-
-            resultSet = statement.executeQuery(query) ;
-
-            while(resultSet.next()) {
-                id = resultSet.getString("id") ;
-                author = resultSet.getString("author") ;
-                category = resultSet.getString("category") ;
-                quotation = resultSet.getString("quote") ;
-
-                quote = new Quote(id, author, category, quotation) ;
-
-                listOfQuotes.add(quote) ;
-            }
-        }
-        catch (Exception e) {
-
-            quote = new Quote() ;
-            quote.setCategory(e.toString());
-            quote.setQuotation(e.getMessage());
-
-
         // pick a random quote from the list of quotes obtained
         random = new Random() ;
         randomNum = random.nextInt(listOfQuotes.size()) ;
