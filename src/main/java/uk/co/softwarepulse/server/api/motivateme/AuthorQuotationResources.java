@@ -13,7 +13,6 @@ import uk.co.softwarepulse.server.api.motivateme.db.AuthorQuoteDAO;
 
 @Path("/quote/author")
 public class AuthorQuotationResources {
-
     /**
      * Used to obtain a single random quote by a particular author
      * @param author name of the author sought
