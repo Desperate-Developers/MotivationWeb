@@ -1,26 +1,31 @@
-package uk.co.softwarepulse.server.api.motivateme;
+package uk.co.softwarepulse.server.api.motivateme ;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import uk.co.softwarepulse.server.api.motivateme.data.Quote;
 import uk.co.softwarepulse.server.api.motivateme.db.RandomQuoteDAO;
 
-import java.util.List;
-import java.util.Random;
-
 
 @Path("/quote")
 public class RandomQuotationResources
 {
+    /**
+     * Used to return a random quote from the database
+     * @return a Quote object
+     */
     @GET
     public Quote showRandomQuote()
     {
-        Random random = new Random() ;
         RandomQuoteDAO randomQuoteDAO = new RandomQuoteDAO() ;
-        List<Quote> quoteList = randomQuoteDAO.showRandomQuote() ;
+        Quote quote ;
 
-        int randomNum = random.nextInt(quoteList.size()) ;
+        try {
+            quote = randomQuoteDAO.showRandomQuote() ;
+        }
+        catch (Exception e) {
+            quote = new Quote("-1", "ERROR", e.getCause().toString(), e.getLocalizedMessage()) ;
+        }
 
-        return quoteList.get(randomNum) ;
+        return quote ;
     }
 }
