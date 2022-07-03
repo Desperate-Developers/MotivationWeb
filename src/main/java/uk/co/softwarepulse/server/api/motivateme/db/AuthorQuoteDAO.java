@@ -8,42 +8,73 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class AuthorQuoteDAO {
 
-    public List<Quote> getAuthor(String authorName)
+    public List<Quote> getAuthor(String author) throws Exception
     {
         List<Quote> listOfQuotes = new ArrayList<>() ;
-        String query = "SELECT * FROM motivate.quotations WHERE author="+authorName ;
-        String id, category, quotation, author ;
+        String id, category, quotation, query ;
 
         Connection connection ;
         Statement statement ;
         ResultSet resultSet ;
-        Quote quote ;
+
         DatabaseAccess da = new DatabaseAccess();
-        try {
-            connection = da.createConnection();
+        Quote quote ;
 
-            statement = connection.createStatement() ;
+        query = "SELECT * FROM motivate.quotations WHERE author LIKE '" + author + "%';" ;
 
-            resultSet = statement.executeQuery(query) ;
+        connection = da.createConnection();
 
-            while(resultSet.next()) {
-                id = resultSet.getString("id") ;
-                author = resultSet.getString("author") ;
-                category = resultSet.getString("category") ;
-                quotation = resultSet.getString("quote") ;
+        statement = connection.createStatement() ;
 
-                quote = new Quote(id, author, category, quotation) ;
+        resultSet = statement.executeQuery(query) ;
 
-                listOfQuotes.add(quote) ;
-            }
+
+        if(!resultSet.next()) {
+            listOfQuotes.add(new Quote("-", "-", "-", "<<< no quotes by " + author + " >>>")) ;
         }
-        catch (Exception e) {
-            e.printStackTrace() ;
+        else {
+            while (resultSet.next()) {
+                id = resultSet.getString("id");
+                author = resultSet.getString("author");
+                category = resultSet.getString("category");
+                quotation = resultSet.getString("quote");
+
+                quote = new Quote(id, author, category, quotation);
+
+                listOfQuotes.add(quote);
+            }
         }
 
         return listOfQuotes ;
     }
 
+
+    public List<String> getAuthors() throws Exception {
+        List<String> listOfQuotes = new ArrayList<>() ;
+        String author, query ;
+
+        Connection connection ;
+        Statement statement ;
+        ResultSet resultSet ;
+
+        DatabaseAccess da = new DatabaseAccess();
+
+        query = "SELECT DISTINCT author FROM motivate.quotations ;" ;
+
+        connection = da.createConnection() ;
+
+        statement = connection.createStatement() ;
+
+        resultSet = statement.executeQuery(query) ;
+
+        while (resultSet.next()) {
+            author = resultSet.getString("author");
+            listOfQuotes.add(author);
+        }
+
+        return listOfQuotes ;
+    }
 }
