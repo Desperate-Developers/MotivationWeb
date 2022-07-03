@@ -62,7 +62,7 @@ public class CategoryQuotationResources {
 
     /**
      * Used to obtain a list of all the categories of the quotes
-     * @return List of Quote objects
+     * @return List of Strings
      */
     @GET
     @Path("/list")
