@@ -1,5 +1,5 @@
 # MotivationWeb
-A web service that provides motivational quotes. Developers can incorporate the service into their applications to provide users with an inspirational message when the application launches or at any time suitable.
+A web service that provides motivational quotes. Developers can incorporate the service into their applications to provide users with an inspirational message when the application launches or at any time suitable. 
 
 The endpoints to obtain:
 * a random quote: http://softwarepulse.org:8085/motivate/me/quote
@@ -11,3 +11,9 @@ The endpoints to obtain:
 * a random quote under a certain category: http://softwarepulse.org:8085/motivate/me/quote/category?category=name_of_category
 * all the quotes under a category: http://softwarepulse.org:8085/motivate/me/quote/category/all?category=name_of_category
 * a quote by its id: http://softwarepulse.org:8085/motivate/me/quote/id?id=id_value
+
+Check out [MotivateMe](https://github.com/imran-2003/MotivateMe) - a desktop and mobile client application that makes use of this web service.
+
+## Copyright 2022 by [Desperate Developers](https://github.com/Desperate-Developers).
+
+### Licensed under [MIT License](https://github.com/Desperate-Developers/MotivationWeb/blob/main/LICENSE).
